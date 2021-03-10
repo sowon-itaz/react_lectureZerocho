@@ -2,8 +2,8 @@ const path = require("path");
 
 module.exports = {
   name: "wordrelay-setting",
-  mode: "development", //실서비스에서는 production으로 변경할 것
-  devtool: "eval", // 실서비스: hidden-source-map
+  mode: "development", //개발중일때는 : development 실서비스에서는 production
+  devtool: "eval", // 개발중일때는: eval 실서비스: hidden-source-map
   resolve: {
     extensions: [".js", ".jsx"],
   },
