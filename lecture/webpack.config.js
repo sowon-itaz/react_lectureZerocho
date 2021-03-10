@@ -21,11 +21,11 @@ module.exports = {
     rules: [
       {
         //.js와 .jsx파일에 rule을 적용하겠다는 정규표현식
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         loader: "babel-loader",
         options: {
           presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: ["@babel/plugin-syntax-class-properties"],
+          plugins: ["@babel/plugin-proposal-class-properties"],
         },
       },
     ],
