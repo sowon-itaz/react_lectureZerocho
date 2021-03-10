@@ -1,0 +1,69 @@
+<html>
+  <head> </head>
+
+  <body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- 바벨이 jsx를 사용할 수 있게 만들어 줌 -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      const e = React.createElement;
+
+      //class하나가 컴포턴트 하나임
+      class Gugudan extends React.Component {
+        constructor(props) {
+          super(props);
+          //바뀔 수 있는 상태들을 기재
+          this.state = {
+            first: Math.ceil(Math.random()*9),
+            second: Math.ceil(Math.random()*9),
+            value:"",
+            result:"",
+          };
+        }
+        //화살표함수
+        // form이 있으면 onSubmit을 쓰고 없으면 onClick쓰는 것이 좋다
+        onSubmit = (e) => {
+            e.preventDefault();
+            if(parseInt(this.state.value) === this.state.first * this.state.second){
+                this.setState({
+                    result: '와! '+ this.state.value + '은 정답입니다!',
+                    first: Math.ceil(Math.random()*9),
+                    second: Math.ceil(Math.random()*9),
+                    value:"",
+                });
+            }else{
+                this.setState({
+                    result: "땡입니다.정답은 "+ this.state.first * this.state.second,
+                    value: "",
+                    first: Math.ceil(Math.random()*9),
+                    second: Math.ceil(Math.random()*9),
+                });
+            }
+        };
+
+        onChange = (e) => {
+            this.setState( {value: e.target.value} ); 
+        };
+
+        render() {
+          return (
+            //   쓸데없는 <div>대신  <React.Fragment> 를 넣으면 css가 편하다
+              <React.Fragment> 
+                <div> {this.state.first} 곱하기 {this.state.second} 는? </div>
+                <form onSubmit={ this.onSubmit }>
+                    <input type="number" value={this.state.value} onChange={ this.onChange } />
+                    <button> 입력 </button>
+                </form>
+                <div>{this.state.result} </div>
+              </React.Fragment>
+          );
+        }
+      }
+    </script>
+    <script type="text/babel">
+      ReactDOM.render(<Gugudan />, document.querySelector("#root"));
+    </script>
+  </body>
+</html>
