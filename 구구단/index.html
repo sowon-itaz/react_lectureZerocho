@@ -27,18 +27,22 @@
         onSubmit = (e) => {
             e.preventDefault();
             if(parseInt(this.state.value) === this.state.first * this.state.second){
-                this.setState({
-                    result: '와! '+ this.state.value + '은 정답입니다!',
-                    first: Math.ceil(Math.random()*9),
-                    second: Math.ceil(Math.random()*9),
-                    value:"",
+                this.setState((preveState)=>{
+                    return{
+                        result: '입력하신'+ preveState.value + '은(는) 정답입니다!',
+                        first: Math.ceil(Math.random()*9),
+                        second: Math.ceil(Math.random()*9),
+                        value:"",
+                    }
                 });
             }else{
-                this.setState({
-                    result: "땡입니다.정답은 "+ this.state.first * this.state.second,
-                    value: "",
-                    first: Math.ceil(Math.random()*9),
-                    second: Math.ceil(Math.random()*9),
+                this.setState((preveState)=>{
+                    return{
+                        result: '입력하신'+ preveState.value + "은(는) 땡입니다. 정답은 "+ this.state.first * this.state.second,
+                        value: "",
+                        first: Math.ceil(Math.random()*9),
+                        second: Math.ceil(Math.random()*9),
+                    }
                 });
             }
         };
@@ -47,14 +51,20 @@
             this.setState( {value: e.target.value} ); 
         };
 
+        //포커스 거는 메서드
+        //render는 render안의 함수를 새로 생성하고 실행한다 -> 계속 새로 생성하므로 loss 발생 -> 함수는 다 빼주는 것이 좋다
+        onFocusInput = (c) => {
+            this.input = c;
+        };
+
         render() {
           return (
             //   쓸데없는 <div>대신  <React.Fragment> 를 넣으면 css가 편하다
               <React.Fragment> 
                 <div> {this.state.first} 곱하기 {this.state.second} 는? </div>
                 <form onSubmit={ this.onSubmit }>
-                    <input type="number" value={this.state.value} onChange={ this.onChange } />
-                    <button> 입력 </button>
+                    <input ref={this.onFocusInput} type="number" value={this.state.value} onChange={ this.onChange } />
+                    <button> 결과확인 </button>
                 </form>
                 <div>{this.state.result} </div>
               </React.Fragment>
