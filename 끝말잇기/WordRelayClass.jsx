@@ -4,7 +4,7 @@ const { Component } = React;
 
 class WordRelayClass extends Component {
   state = {
-    word: "리액트",
+    word: "리액트으",
     value: "",
     result: "",
   };
