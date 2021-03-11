@@ -1,7 +1,6 @@
 const React = require("react");
-const { useState, useRef } = React;
+const { Component } = React;
 
-//hooks로만들기
 class WordRelay extends Component {
     constructor(props) {
         super(props);
