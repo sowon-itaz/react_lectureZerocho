@@ -1,4 +1,5 @@
 const path = require("path");
+const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   name: "numberbaseball1-dev",
@@ -26,16 +27,23 @@ module.exports = {
             ],
             "@babel/preset-react",
           ],
-          plugins: ["@babel/plugin-proposal-class-properties"],
+          plugins: [
+            "@babel/plugin-proposal-class-properties",
+            "react-refresh/babel",
+          ],
         },
       },
     ],
   },
-  plugins: [],
+  plugins: [new RefreshWebpackPlugin()],
   output: {
     //출력
     path: path.join(__dirname, "dist"), //__dirname는 현재폴더(c://블라블라/dist)
     filename: "app.js", //entry의 app안에 파일들을 합쳐서 app.js로 만들어 주는것
-    // publicPath: "/dist",
+    publicPath: "/dist",
+  },
+  devServer: {
+    publicPath: "/dist",
+    hot: true,
   },
 };
