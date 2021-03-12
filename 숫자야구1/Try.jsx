@@ -1,8 +1,8 @@
 //클래스
-/*
-import React, { Component } from "react";
 
-class Try extends Component {
+import React, { PureComponent } from "react";
+
+class Try extends PureComponent {
   render() {
     const { tryInfo } = this.props;
     return (
@@ -13,10 +13,9 @@ class Try extends Component {
     );
   }
 }
-*/
 
-//훅스
-
+//훅스 => PureComponent와 shouldComponentUpdate가 없다. 그대신 memo를 사용함
+/*
 import React, { memo } from "react";
  
  //구조분해
@@ -28,6 +27,6 @@ const Try = memo(({ tryInfo }) => {
     </li>
   );
 });
-
+*/
 
 export default Try;
