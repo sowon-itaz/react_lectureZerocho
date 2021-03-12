@@ -20,7 +20,25 @@ class ResponseCheckClass extends Component {
         >
           {this.state.message}
         </div>
-        {/* {this.renderAverage()} */}
+        {/* 삼항연산자 */}
+        {/* {this.state.result.length === 0 ? null : (
+          <div>
+            {" "}
+            평균시간 :{" "}
+            {this.state.result.reduce((a, c) => a + c) /
+              this.state.result.length}{" "}
+            ms
+          </div>
+        )} */}
+        {/* 보호연산자 */}
+        {this.state.result.length !== 0 && (
+          <div>
+            평균시간 :
+            {this.state.result.reduce((a, c) => a + c) /
+              this.state.result.length}
+            ms
+          </div>
+        )}
       </>
     );
   }
