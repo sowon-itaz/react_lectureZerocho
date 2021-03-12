@@ -36,9 +36,9 @@ const NumberBaseballHooks = () => {
       const answerArray = value.split("").map(v => parseInt(v));
       let strike = 0;
       let ball = 0;
-      if (tries.length >= 9) {
-        // 10번 이상 틀렸을 때
-        setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(",")}였습니다!`);
+      if (tries.length >= 5) {
+        // 5번 이상 틀렸을 때
+        setResult(`5번 넘게 틀려서 실패! 답은 ${answer.join(",")}였습니다!`);
         alert("실패! 게임을 다시 시작합니다!");
         setValue("");
         setAnswer(getNumbers());
