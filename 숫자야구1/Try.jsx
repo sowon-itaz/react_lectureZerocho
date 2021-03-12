@@ -1,4 +1,5 @@
 //클래스
+/*
 import React, { Component } from "react";
 
 class Try extends Component {
@@ -12,12 +13,14 @@ class Try extends Component {
     );
   }
 }
+*/
 
 //훅스
-/*
-import React, { memo } from "react";
 
-const Try = memo(({ tryInfo }) => {
+import React, { memo } from "react";
+ 
+ //구조분해
+const Try = memo(({ tryInfo }) => { 
   return (
     <li>
       <div>{tryInfo.try}</div>
@@ -25,6 +28,6 @@ const Try = memo(({ tryInfo }) => {
     </li>
   );
 });
-*/
+
 
 export default Try;
