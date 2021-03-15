@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import LottoClass from "./LottoClass";
-// import LottoHooks from "./LottoHooks";
+import LottoClass from "./LottoHooks";
+import LottoHooks from "./LottoHooks";
 
-ReactDOM.render(<LottoClass />, document.querySelector("#root"));
+ReactDOM.render(<LottoHooks />, document.querySelector("#root"));
