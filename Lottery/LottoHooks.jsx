@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, userMemo, useMemo } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
 import Ball from "./Ball";
 
 //로또당첨숫자 미리 뽑는 함수
@@ -48,19 +54,37 @@ const LottoHooks = () => {
   }, [timeouts.current]); // 빈 배열이면 componentDidMount와 동일
   // 배열에 요소가 있으면 componentDidMount랑 componentDidUpdate 둘 다 수행
 
+  //useEffect 여러번 실행가능
   useEffect(() => {
-    console.log("로또 숫자를 생성합니다.");
+    console.log("useEffect 여러번 실행할 수 있음");
   }, [winNumbers]);
 
+  //componentDidMount만 수행하고 싶다면?
+  useEffect(() => {
+    //ajax
+  }, []); //빈배열로 놔두기
+
+  //componentDidMount말고 componentDidUpdate만 수행하고 싶다면?
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      //ajax 처리
+    }
+  }, []); //배열에는 바뀌는 값입력
+
   // 한번 더 뽑는 함수
-  const onClickRedo = () => {
+  const onClickRedo = useCallback(() => {
     console.log("onClickRedo");
+    console.log("useCallback사용시 winNumbers: "); //함수 자체를 기억하기때문에 winNumbers의 값이 첫실행된 값을 가지고 있다. 따라서 input에 winNumbers를 넣어주면 winNumbers 변경값을 인지할수있다.
     setWinNumbers(getWinNumbers()); // 당첨 숫자들
     setWinBalls([]);
     setBonus(null);
     setRedo(false);
     timeouts.current = [];
-  };
+  }
+    , [winNumbers]); //변경 state 넣기
 
   return (
     <>
@@ -75,6 +99,6 @@ const LottoHooks = () => {
       {redo && <button onClick={onClickRedo}>한 번 더!</button>}
     </>
   );
-};
+};;
 
 export default LottoHooks;
