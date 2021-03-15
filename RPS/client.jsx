@@ -2,5 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import RPSClass from "./RPSClass";
+import RPSHooks from "./RPSHooks";
 
-ReactDOM.render(<RPSClass />, document.querySelector("#root"));
+ReactDOM.render(<RPSHooks />, document.querySelector("#root"));
