@@ -11,9 +11,12 @@ const Td = memo(({ rowIndex, cellIndex, dispatch, cellData }) => {
       return;
     }
     dispatch({ type: CLICK_CELL, row: rowIndex, cell: cellIndex });
-  }, [cellData]);
+  }, [cellData]); //바뀔 여지가 있는 데이터는 index에 넣어줘야한다.
 
-  return <td onClick={onClickTd}>{cellData}</td>;
+return (
+    <td onClick={onClickTd}>{cellData}</td>
+  )
 });
+
 
 export default Td;
